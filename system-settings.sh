@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Enter the correct device (e.g. SD card reader), /dev/sda /dev/mmcblk0 /dev/mmcblk1
 # You can leave this variable empty (e.g. DEVICE=),
