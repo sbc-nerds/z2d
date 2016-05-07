@@ -2,6 +2,16 @@
 set -ex
 . ./system-settings.sh
 
+IS_IMAGE=false
+if [ -z "${DEVICE}" ]; then
+    IS_IMAGE=true
+    IMAGE_NAME=$PWD/`basename \`dirname \\\`realpath "$0"\\\`\``-`basename -s -00.sh "$0"`.img
+    cd `dirname \`realpath "$0"\``
+    dd if=/dev/zero of=${IMAGE_NAME} bs=1M count=1024
+    sudo losetup /dev/loop0 ${IMAGE_NAME}
+    DEVICE=`losetup -f`
+fi
+
 re='^[0-9]$'
 if  [[ ${DEVICE: -1} =~ $re ]] ; then
     PARTITION_1="p1"
@@ -27,3 +37,11 @@ sudo mount ${DEVICE}${PARTITION_1} ./rootfs/bootenv
 sudo rm -rf rootfs/bootenv/initrd.img rootfs/bootenv/pine64/
 curl -sSL https://raw.githubusercontent.com/umiddelb/u-571/master/board/pine64+/bundle.uEnv | sudo dd of=./rootfs/bootenv/bundle.uEnv
 curl -sSL https://github.com/umiddelb/u-571/blob/master/board/pine64+/uboot.env.xz?raw=true | unxz | sudo dd of=./rootfs/bootenv/uboot.env
+
+if [ "$IS_IMAGE" = true ]; then
+    sh ./`basename -s -00.sh "$0"`-01.sh
+    sudo umount ./rootfs
+    sync
+    sudo losetup -d ${DEVICE}
+    cd -
+fi
