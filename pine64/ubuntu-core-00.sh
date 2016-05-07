@@ -8,8 +8,8 @@ if [ -z "${DEVICE}" ]; then
     IMAGE_NAME=$PWD/`basename \`dirname \\\`realpath "$0"\\\`\``-`basename -s -00.sh "$0"`.img
     cd `dirname \`realpath "$0"\``
     dd if=/dev/zero of=${IMAGE_NAME} bs=1M count=1024
-    sudo losetup /dev/loop0 ${IMAGE_NAME}
     DEVICE=`losetup -f`
+    sudo losetup ${DEVICE} ${IMAGE_NAME}
 fi
 
 re='^[0-9]$'
