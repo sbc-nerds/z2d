@@ -13,9 +13,15 @@ sudo cp common-functions.sh ./rootfs
 sudo cp system-settings.sh ./rootfs
 sudo cp ubuntu-docker-00.sh ./rootfs
 
+sudo mkdir -p ./rootfs/usr/bin
+sudo cp /usr/bin/qemu-arm-static ./rootfs/usr/bin
+sudo cp /usr/bin/qemu-aarch64-static ./rootfs/usr/bin
+
 sudo chroot ./rootfs bash /ubuntu-core-02.sh
 sudo rm ./rootfs/ubuntu-core-02.sh
 sudo rm ./rootfs/common-functions.sh
+sudo rm ./rootfs/usr/bin/qemu-arm-static
+sudo rm ./rootfs/usr/bin/qemu-aarch64-static
 
 sudo umount ./rootfs/dev/pts
 sudo umount ./rootfs/sys
