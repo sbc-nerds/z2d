@@ -101,6 +101,7 @@ c_nameserver () {
 }
 
 c_nameserver_modern () {
+  mkdir -p /etc/resolvconf/resolv.conf.d/
   for ((i = 1; i <= $#; i++)); do
     if (($i == 1)); then
       echo "nameserver ${!i}" > /etc/resolvconf/resolv.conf.d/base
