@@ -4,11 +4,13 @@
 IS_IMAGE=false
 if [ -z "${DEVICE}" ]; then
     IS_IMAGE=true
-    IMAGE_NAME=$PWD/`basename \`dirname \\\`realpath "$0"\\\`\``-`basename -s -00.sh "$0"`.img
+    IMAGE_PATH=$PWD/`basename \`dirname \\\`realpath "$0"\\\`\``-`basename -s -00.sh "$0"`.img
     cd `dirname \`realpath "$0"\``
-    dd if=/dev/zero of=${IMAGE_NAME} bs=1M count=1024
+    #dd if=/dev/zero of=${IMAGE_PATH} bs=1M count=1024
+    sudo rm ${IMAGE_PATH}
+    truncate -s 1024M ${IMAGE_PATH}
     DEVICE=`losetup -f`
-    sudo losetup ${DEVICE} ${IMAGE_NAME}
+    sudo losetup ${DEVICE} ${IMAGE_PATH}
 fi
 
 re='^[0-9]$'
