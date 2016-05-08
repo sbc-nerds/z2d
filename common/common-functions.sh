@@ -288,6 +288,7 @@ c_fw_utils () {
 }
 
 c_user () {
-  adduser --gecos '' $1
+  useradd -m -s "/bin/bash" $1
+  echo $1:$2 | chpasswd
   usermod -aG adm,cdrom,dialout,sudo,plugdev $1
 }

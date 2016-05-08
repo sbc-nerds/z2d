@@ -14,8 +14,9 @@ TIMEZONE="Europe/Berlin"
 # Enter a space-separated list of nameservers, e.g. "8.8.8.8 8.8.4.4"
 NAMESERVERS="8.8.8.8 8.8.4.4"
 
-# Enter the username for your system.
+# Enter the username and password for your system.
 USERNAME="username"
+PASSWORD="password"
 
 # Enter the hostname for your CuBox-i system.
 CBXI_HOSTNAME="cbxi"
