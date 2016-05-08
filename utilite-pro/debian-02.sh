@@ -8,7 +8,7 @@ c_locale_debian ${LOCALES}
 c_tzone ${TIMEZONE}
 c_hostname ${UPRO_HOSTNAME}
 c_apt_list_debian "jessie"
-c_nameserver_modern ${NAMESERVERS}
+c_nameserver ${NAMESERVERS}
 
 dpkg-divert --local --rename --add /sbin/initctl; ln -s /bin/true /sbin/initctl
 export DEBIAN_FRONTEND=noninteractive
@@ -24,6 +24,7 @@ c_if_lo
 c_if_dhcp "eth0"
 c_ttyS_debian "ttymxc3"
 c_fw_utils "/dev/mtd1 0xc0000 0x2000 0x2000"
+c_nameserver_modern ${NAMESERVERS}\
 c_user ${USERNAME} ${PASSWORD}
 
 apt-get clean

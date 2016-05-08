@@ -109,6 +109,7 @@ c_nameserver_modern () {
       echo "nameserver ${!i}" >> /etc/resolvconf/resolv.conf.d/base
     fi
   done
+  resolvconf -u
 }
 
 r_pkg_upgrade () {

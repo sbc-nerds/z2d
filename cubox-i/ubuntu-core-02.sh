@@ -10,7 +10,7 @@ c_locale ${LOCALES}
 c_tzone ${TIMEZONE}
 c_hostname ${CBXI_HOSTNAME}
 c_apt_list "xenial"
-c_nameserver_modern ${NAMESERVERS}
+c_nameserver ${NAMESERVERS}
 
 dpkg-divert --local --rename --add /sbin/initctl; ln -s /bin/true /sbin/initctl
 
@@ -23,6 +23,7 @@ c_if_lo
 c_if_dhcp "eth0"
 c_ttyS "ttymxc0"
 c_fw_utils "/dev/mmcblk0 0x60000 0x2000 0x2000"
+c_nameserver_modern ${NAMESERVERS}
 c_user ${USERNAME} ${PASSWORD}
 
 apt-get clean
