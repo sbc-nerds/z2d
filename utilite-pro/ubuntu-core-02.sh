@@ -8,7 +8,7 @@ c_locale ${LOCALES}
 c_tzone ${TIMEZONE}
 c_hostname ${UPRO_HOSTNAME}
 c_apt_list "xenial"
-c_nameserver ${NAMESERVERS}
+c_nameserver_modern ${NAMESERVERS}
 
 dpkg-divert --local --rename --add /sbin/initctl; ln -s /bin/true /sbin/initctl
 

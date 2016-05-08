@@ -8,7 +8,7 @@ c_locale_debian ${LOCALES}
 c_tzone ${TIMEZONE}
 c_hostname ${XU4_HOSTNAME}
 c_apt_list_debian "jessie"
-c_nameserver ${NAMESERVERS}
+c_nameserver_modern ${NAMESERVERS}
 
 dpkg-divert --local --rename --add /sbin/initctl; ln -s /bin/true /sbin/initctl
 export DEBIAN_FRONTEND=noninteractive

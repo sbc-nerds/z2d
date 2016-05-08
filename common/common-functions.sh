@@ -22,12 +22,10 @@ c_locale_debian () {
   dpkg-reconfigure -f noninteractive locales
 }
 
-
 c_tzone () {
   echo "$1" > /etc/timezone
   dpkg-reconfigure -f noninteractive tzdata
 }
-
 
 c_hostname () {
   echo $1 > /etc/hostname
@@ -102,6 +100,16 @@ c_nameserver () {
   done
 }
 
+c_nameserver_modern () {
+  for ((i = 1; i <= $#; i++)); do
+    if (($i == 1)); then
+      echo "nameserver ${!i}" > /etc/resolvconf/resolv.conf.d/base
+    else
+      echo "nameserver ${!i}" >> /etc/resolvconf/resolv.conf.d/base
+    fi
+  done
+}
+
 r_pkg_upgrade () {
   apt-get -q=2 update
   apt-get -q=2 -y upgrade
@@ -113,11 +121,11 @@ i_base () {
 }
 
 i_base_debian () {
-  apt-get -q=2 -y install xz-utils sudo openssh-server less ntfs-3g exfat-utils exfat-fuse firmware-linux
+  apt-get -q=2 -y install sudo openssh-server less firmware-linux resolvconf
 }
 
 i_extra () {
-  apt-get -q=2 -y install u-boot-tools curl dialog screen wireless-tools iw libncurses5-dev cpufrequtils rcs aptitude make bc lzop ntpdate ntp usbutils pciutils lsof most sysfsutils
+  apt-get -q=2 -y install u-boot-tools curl dialog screen wireless-tools iw libncurses5-dev cpufrequtils rcs aptitude make bc lzop ntpdate ntp usbutils pciutils lsof most sysfsutils ntfs-3g exfat-utils exfat-fuse xz-utils
 }
 
 i_gcc () {
