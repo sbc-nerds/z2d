@@ -7,7 +7,7 @@ if [ -z "${DEVICE}" ]; then
     IMAGE_PATH=$PWD/`basename \`dirname \\\`realpath "$0"\\\`\``-`basename -s -00.sh "$0"`.img
     cd `dirname \`realpath "$0"\``
     #dd if=/dev/zero of=${IMAGE_PATH} bs=1M count=1024
-    sudo rm ${IMAGE_PATH}
+    sudo rm -f ${IMAGE_PATH}
     truncate -s 1024M ${IMAGE_PATH}
     DEVICE=`losetup -f`
     sudo losetup ${DEVICE} ${IMAGE_PATH}
