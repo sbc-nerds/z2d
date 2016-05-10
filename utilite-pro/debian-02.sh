@@ -23,8 +23,8 @@ i_kernel_utilite_pro
 c_if_lo
 c_if_dhcp "eth0"
 c_ttyS_debian "ttymxc3"
-c_fw_utils "/dev/mtd1 0xc0000 0x2000 0x2000"
-c_nameserver_modern ${NAMESERVERS}\
+c_fw_utils "/dev/mtd1  0x0  0x2000  0x2000"
+c_nameserver_modern ${NAMESERVERS}
 c_user ${USERNAME} ${PASSWORD}
 
 apt-get clean
