@@ -98,20 +98,24 @@ r_pkg_upgrade () {
 
 i_base () {
   apt-get -q=2 -y install ubuntu-minimal software-properties-common ssh linux-firmware vim
+  apt-get clean
 }
 
 i_base_debian () {
   apt-get -q=2 -y install sudo openssh-server less firmware-linux resolvconf
+  apt-get clean
 }
 
 i_extra () {
   apt-get -q=2 -y install u-boot-tools curl dialog screen wireless-tools iw libncurses5-dev cpufrequtils rcs aptitude make bc lzop ntpdate ntp usbutils pciutils lsof most sysfsutils ntfs-3g exfat-utils exfat-fuse xz-utils
+  apt-get clean
 }
 
 i_gcc () {
   apt-get -y install gcc-5 g++-5
   update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50
+  apt-get clean
 }
 
 i_gcc_debian () {
@@ -119,6 +123,7 @@ i_gcc_debian () {
   apt-get -q=2 -y -t testing install gcc-5 g++-5
   update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50
+  apt-get clean
 }
 
 i_kernel_odroid_c1 () {
