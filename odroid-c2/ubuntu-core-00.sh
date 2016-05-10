@@ -37,6 +37,7 @@ sudo ./uboot-env -d ${DEVICE} -o 0xB4000 -l 0x8000 del -I
 sudo ./uboot-env -d ${DEVICE} -o 0xB4000 -l 0x8000 del -i
 curl -sSL https://raw.githubusercontent.com/umiddelb/u-571/master/board/odroid-c2/bundle.uEnv | sudo ./uboot-env -d ${DEVICE} -o 0xB4000 -l 0x8000 set
 sync
+rm ./uboot-env
 
 sudo mkfs.ext4 -O ^has_journal -b 4096 -L rootfs -U deadbeef-dead-beef-dead-beefdeadbeef ${DEVICE}${PARTITION_1}
 sudo mount ${DEVICE}${PARTITION_1} ./rootfs
