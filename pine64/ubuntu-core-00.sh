@@ -42,6 +42,7 @@ curl -sSL https://github.com/umiddelb/u-571/blob/master/board/pine64+/uboot.env.
 
 if [ "$IS_IMAGE" = true ]; then
     sh ./`basename -s -00.sh "$0"`-01.sh
+    sudo umount ./rootfs/bootenv
     sudo umount ./rootfs
     sync
     sudo losetup -d ${DEVICE}
