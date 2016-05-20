@@ -31,7 +31,7 @@ set -e
 sync
 sudo partprobe -s ${DEVICE}
 
-sudo mkfs.ext4 -O ^has_journal -b 4096 -L rootfs -U deadbeef-dead-beef-dead-beefdeadbeef ${DEVICE}${PARTITION_2}
+sudo mkfs.ext4 -F -O ^has_journal -b 4096 -L rootfs -U deadbeef-dead-beef-dead-beefdeadbeef ${DEVICE}${PARTITION_2}
 sudo mount ${DEVICE}${PARTITION_2} ./rootfs
 
 sudo mkdir ./rootfs/bootenv
